@@ -1,13 +1,17 @@
 version: '3'
 volumes:
   postgres_data: {}
+  bundle: {}
 services:
   app:
     build:
       context: .
       dockerfile: docker/app/Dockerfile
+    tty: true
+    stdin_open: true
     volumes:
       - .:/var/www/book_store
+      - bundle:/bundle
     depends_on:
       - db
   db:

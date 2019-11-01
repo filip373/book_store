@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'actionpack-page_caching', github: 'rails/actionpack-page_caching'
+gem 'actionpack-action_caching', github: 'rails/actionpack-action_caching'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

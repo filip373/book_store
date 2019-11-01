@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/rails/actionpack-action_caching.git
+  revision: 6c48c98d0b59d4868ac71817bf46cbdee26467ff
+  specs:
+    actionpack-action_caching (1.2.0)
+      actionpack (>= 4.0.0)
+
+GIT
   remote: https://github.com/rails/actionpack-page_caching.git
   revision: f5931b6c8907c1fb2a810bb93fb3cb22a072fc14
   specs:
@@ -208,6 +215,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionpack-action_caching!
   actionpack-page_caching!
   bootsnap (>= 1.4.2)
   byebug

@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
+  caches_action :show
+
   # GET /books
   # GET /books.json
   def index
@@ -10,6 +12,7 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
+    redirect_to(action: :index) unless params[:user_id]
   end
 
   # GET /books/new
@@ -44,6 +47,7 @@ class BooksController < ApplicationController
       if @book.update(book_params)
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
         format.json { render :show, status: :ok, location: @book }
+        expire_action action: :show
       else
         format.html { render :edit }
         format.json { render json: @book.errors, status: :unprocessable_entity }

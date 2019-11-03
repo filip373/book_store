@@ -1,5 +1,5 @@
 class LibrariesController < ApplicationController
-  caches_page :index, :show
+  caches_page :index#, :show
   before_action :set_library, only: [:show, :edit, :update, :destroy]
   # libraries do not change that often,
   # so we use page caching on index
@@ -50,7 +50,7 @@ class LibrariesController < ApplicationController
         format.html { redirect_to @library, notice: 'Library was successfully updated.' }
         format.json { render :show, status: :ok, location: @library }
         expire_page action: 'index'
-        expire_page action: 'show', id: @library.id
+        #expire_page action: 'show', id: @library.id
       else
         format.html { render :edit }
         format.json { render json: @library.errors, status: :unprocessable_entity }
@@ -66,7 +66,7 @@ class LibrariesController < ApplicationController
       format.html { redirect_to libraries_url, notice: 'Library was successfully destroyed.' }
       format.json { head :no_content }
       expire_page action: 'index'
-      expire_page action: 'show', id: @library.id
+      #expire_page action: 'show', id: @library.id
     end
   end
 

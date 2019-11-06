@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ends_at: 1
+  book: MyString
+
+two:
+  ends_at: 1
+  book: MyString

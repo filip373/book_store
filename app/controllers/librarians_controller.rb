@@ -4,7 +4,26 @@ class LibrariansController < ApplicationController
   # GET /librarians
   # GET /librarians.json
   def index
-    @librarians = Librarian.all
+    begin #cache query to all librarians
+      @librarians = Librarian.all.to_a
+      Librarian.all.to_a
+    end
+
+    begin #cache where clause query
+      Librarian.where(name: "Joe").to_a
+      Librarian.where(name: "Joe").to_a
+    end
+
+    begin #don't use cache on different where clause query
+      Librarian.where(name: "Doe").to_a
+      Librarian.where(name: "Woe").to_a
+    end
+
+    begin #on create new -> bust the cache
+      Librarian.where(name: "Woe").to_a
+      Librarian.create!(name: "Toe")
+      Librarian.where(name: "Woe").to_a
+    end
   end
 
   # GET /librarians/1

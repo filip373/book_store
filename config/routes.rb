@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :librarians
   resources :bookings
   resources :employees
   resources :users

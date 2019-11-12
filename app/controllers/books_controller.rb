@@ -7,6 +7,7 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @books = Book.all
+    expires_in 20.minutes, public: true
   end
 
   # GET /books/1
@@ -18,6 +19,7 @@ class BooksController < ApplicationController
   # GET /books/new
   def new
     @book = Book.new
+    expires_now
   end
 
   # GET /books/1/edit

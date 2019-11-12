@@ -5,11 +5,21 @@ class NewspapersController < ApplicationController
   # GET /newspapers.json
   def index
     @newspapers = Newspaper.all
+    newest_paper = @newspapers.order(:updated_at).last
+    stale_newspapers = stale?(
+      etag: newest_paper,
+      last_modified: newest_paper.updated_at.utc,
+      public: true,
+    )
+    logger.info("Stale cache") if stale_newspapers
   end
 
   # GET /newspapers/1
   # GET /newspapers/1.json
   def show
+    fresh_when(
+      etag: @newspaper, last_modified: @newspaper.updated_at.utc, public: true
+    )
   end
 
   # GET /newspapers/new
